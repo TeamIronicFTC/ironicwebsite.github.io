@@ -32,11 +32,12 @@
   --teal-dim: #067F7A;
   --teal-glow: rgba(8,161,154,0.15);
   --teal-border: rgba(8,161,154,0.3);
-  /* Ironic Grey — secondary brand accent + neutral scale */
+  /* Ironic Grey — secondary brand accent, used for the neutral scale below */
   --grey: #646363;
-  --silver: #C9C7C5;
-  --silver-dim: rgba(201,199,197,0.15);
-  --silver-border: rgba(201,199,197,0.3);
+  /* Pink — kept as the site's original highlight accent */
+  --pink: #FF2D78;
+  --pink-dim: rgba(255,45,120,0.15);
+  --pink-border: rgba(255,45,120,0.3);
   /* Neutral surfaces, built off Ironic Grey instead of the old teal-tinted blacks */
   --bg: #0A0A0A;
   --bg2: #101010;
@@ -110,7 +111,7 @@ body::before {
 
 .topbar-number {
   font-size: 9px;
-  color: var(--silver);
+  color: var(--pink);
   letter-spacing: 0.15em;
   margin-top: 3px;
 }
@@ -141,7 +142,7 @@ body::before {
   border-bottom-color: var(--teal);
 }
 
-.nav-link:nth-child(even):hover { color: var(--silver); border-bottom-color: var(--silver); }
+.nav-link:nth-child(even):hover { color: var(--pink); border-bottom-color: var(--pink); }
 
 .topbar-meta {
   color: var(--text-muted);
@@ -238,7 +239,7 @@ main { margin-left: 0; margin-top: 68px; min-height: 100vh; }
   z-index: 50;
 }
 .hero-meta-line { color: var(--text-dim); line-height: 1.6; }
-.hero-meta-line:first-child { color: var(--silver); font-weight: 700; }
+.hero-meta-line:first-child { color: var(--pink); font-weight: 700; }
 
 .hero-stats {
   display: flex;
@@ -258,8 +259,8 @@ main { margin-left: 0; margin-top: 68px; min-height: 100vh; }
   flex-direction: column;
   gap: 3px;
 }
-.hero-stat-num { color: var(--silver); }
-.hero-stat-label { color: var(--silver); opacity: 0.7; }
+.hero-stat-num { color: var(--pink); }
+.hero-stat-label { color: var(--pink); opacity: 0.7; }
 .hero-stat-div { width: 1px; background: var(--border); flex-shrink: 0; }
 
 .hero-gear-desktop-left {
@@ -283,7 +284,7 @@ main { margin-left: 0; margin-top: 68px; min-height: 100vh; }
   position: relative;
   z-index: 3;
   height: 1px;
-  background: linear-gradient(90deg, var(--teal), var(--silver), transparent);
+  background: linear-gradient(90deg, var(--teal), var(--pink), transparent);
   margin: 0 -56px;
 }
 
@@ -331,10 +332,10 @@ main { margin-left: 0; margin-top: 68px; min-height: 100vh; }
   font-family: "Inter", sans-serif;
   font-size: 34px;
   font-weight: 900;
-  color: var(--silver);
+  color: var(--pink);
   letter-spacing: 0.02em;
   line-height: 1;
-  border: 1px solid rgba(201,199,197,0.4);
+  border: 1px solid rgba(255,45,120,0.4);
   border-radius: 10px;
   padding: 10px 6px;
   min-width: 58px;
@@ -400,7 +401,7 @@ main { margin-left: 0; margin-top: 68px; min-height: 100vh; }
 }
 .event-month {
   font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--silver);
+  text-transform: uppercase; color: var(--pink);
   margin-bottom: 4px;
 }
 .event-day { color: var(--text); }
@@ -455,12 +456,12 @@ main { margin-left: 0; margin-top: 68px; min-height: 100vh; }
   transition: transform 0.3s ease;
 }
 .team-card:hover .team-card-img::before { transform: scaleX(1); }
-.team-card.pink .team-card-img::before { background: var(--silver); }
+.team-card.pink .team-card-img::before { background: var(--pink); }
 .team-card.blue .team-card-img::before { background: var(--teal); }
 .team-card-body { padding: 0; text-align: center; }
 .team-card-name { color: var(--text); margin-bottom: 4px; }
 .team-card-role { font-size: 11px; font-weight: 500; color: var(--teal); text-transform: uppercase; letter-spacing: 0.06em; }
-.team-card.pink .team-card-role { color: var(--silver); }
+.team-card.pink .team-card-role { color: var(--pink); }
 .team-card.blue .team-card-role { color: var(--teal); }
 .team-card-grade { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
 
@@ -479,7 +480,7 @@ main { margin-left: 0; margin-top: 68px; min-height: 100vh; }
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--silver), var(--teal));
+  background: linear-gradient(var(--pink), var(--teal));
   border-radius: 2px;
 }
 
@@ -491,7 +492,7 @@ main { margin-left: 0; margin-top: 68px; min-height: 100vh; }
   bottom: 0; left: 0; right: 0;
   height: 5px;
   background: linear-gradient(90deg,
-    var(--teal), var(--silver), var(--teal-dim), var(--silver), var(--teal));
+    var(--teal), var(--pink), var(--teal-dim), var(--pink), var(--teal));
   background-size: 300% 100%;
   animation: rgbCycle 8s linear infinite;
   z-index: 250;
@@ -570,7 +571,7 @@ main { margin-left: 0; margin-top: 68px; min-height: 100vh; }
 
 /* 16. Utility text colors */
 .text-teal { color: var(--teal); }
-.text-pink { color: var(--silver); }
+.text-pink { color: var(--pink); }
 .text-dim  { color: var(--text-dim); }
 
 
@@ -728,7 +729,7 @@ main { margin-left: 0; margin-top: 68px; min-height: 100vh; }
   padding: 22px 26px;
 }
 .season-awards-title {
-  color: var(--silver);
+  color: var(--pink);
   margin-bottom: 18px;
   display: flex;
   align-items: center;
@@ -887,7 +888,7 @@ main { margin-left: 0; margin-top: 68px; min-height: 100vh; }
 .newsletter-submit:hover:not(:disabled) { background: var(--teal); color: var(--bg); }
 .newsletter-submit:disabled { opacity: 0.6; cursor: default; }
 .newsletter-feedback { margin-top: 16px; font-size: 13px; color: var(--teal); min-height: 16px; }
-.newsletter-feedback.is-error { color: var(--silver); }
+.newsletter-feedback.is-error { color: var(--pink); }
 
 /* Standalone newsletter.html page: same topbar as every other page,
    card centered in the space below it. */
@@ -943,7 +944,7 @@ main { margin-left: 0; margin-top: 68px; min-height: 100vh; }
   justify-content: center;
   transition: all 0.2s;
 }
-.modal-close:hover { color: var(--silver); border-color: var(--silver); }
+.modal-close:hover { color: var(--pink); border-color: var(--pink); }
 
 /* Locks page scroll behind the blur while a modal is open. */
 body.modal-open { overflow: hidden; }
