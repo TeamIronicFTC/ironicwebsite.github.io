@@ -19,11 +19,20 @@
     3. Sponsors content: a short CTA (blurb + "Get in touch" button)
        above three logo tiers, biggest to smallest.
 
-  The "Get in touch" button links to sponsor-form.html, its own
-  standalone page (same pattern as newsletter.html), rather than
-  popping the form up on top of this page. That page holds the
-  customgform.com embed div/script — nothing customgform-related
-  lives here anymore.
+  The "Get in touch" button opens the sponsor form as a popup right
+  on top of this page, handled entirely by customgform.com's own
+  embed script (not script.js, not the ".modal-overlay" blur used by
+  the Newsletter popup — that markup and blur are ours, this popup's
+  markup and backdrop are theirs). The div carries the
+  data-customgform / data-mode / data-label attributes their embed
+  code requires, reuses the existing .sponsor-cta-btn look for the
+  trigger itself, and the cgf.js script tag that powers it sits at
+  the bottom of the page next to script.js. To point this at a
+  different form, swap the data-customgform id below for the new
+  form's id from customgform.com. To change the color/theme of the
+  form popup itself, that's done on customgform.com's own editor
+  (Design tab), not in this site's CSS — see the header note in
+  style.css section 19 for more.
 
   Sponsor tiers below are Gold (2 large), Silver (3 medium), Bronze
   (5 small) — every tile is a square, sized per tier in style.css
@@ -67,10 +76,13 @@
 
   <div class="sponsors-content">
 
-    <!-- CTA: blurb + button, links out to sponsor-form.html -->
+    <!-- CTA: blurb + button, opens the sponsor form as a popup on this page -->
     <div class="sponsor-cta">
       <p class="lead type-body">Interested in becoming a sponsor and helping out a local robotics team?</p>
-      <a class="type-button sponsor-cta-btn" href="sponsor-form.html">Get in touch</a>
+      <div class="type-button sponsor-cta-btn"
+           data-customgform="cmts2jukv003i01rs7cdb7ct8"
+           data-mode="popup"
+           data-label="Get in touch">Get in touch</div>
     </div>
 
     <!-- TIER 1: 2 large square tiles side by side -->
@@ -133,6 +145,7 @@
 <!-- RGB light strip, cycles through site colors at the very bottom of the page -->
 <div class="rgb-strip"></div>
 
+<script async src="https://cdn.customgform.com/cgf.js"></script>
 <script async src="https://cdn.customgform.com/cgf.js"></script>
 <script src="script.js"></script>
 </body>

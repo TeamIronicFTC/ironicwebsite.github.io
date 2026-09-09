@@ -958,11 +958,13 @@ body.modal-open { overflow: hidden; }
    flex-wrap layout reflows and wraps on its own.
 
    .sponsor-cta-btn matches the "Newsletter" button's look on the
-   overview page (transparent, teal outline, fills teal on hover),
-   but it is NOT wired to anything yet on purpose — no href, no
-   mailto, no modal — since there's nowhere for it to go until a
-   sponsor contact method is picked. Wire it up whenever that's
-   ready. */
+   overview page (transparent, teal outline, fills teal on hover).
+   It's the trigger only — clicking it hands off to customgform.com's
+   own popup script (see sponsors.html), so this class only styles
+   the button itself, never the form that pops up. The form's own
+   colors/fonts/theme are set on customgform.com's editor (Design
+   tab for that form), not here — nothing in this stylesheet can
+   reach inside their popup. */
 .sponsors-content { padding: 48px 56px 80px; max-width: 1300px; margin: 0 auto; }
 
 .sponsor-cta {
@@ -982,7 +984,6 @@ body.modal-open { overflow: hidden; }
   border: 2px solid var(--teal);
   border-radius: 8px;
   cursor: pointer;
-  text-decoration: none; /* now used on an <a> (links to sponsor-form.html) rather than a <button> */
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 .sponsor-cta-btn:hover { background: var(--teal); color: var(--bg); }
