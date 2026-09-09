@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sponsor Us — Team IRONIC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<!--
+  SPONSOR FORM PAGE
+
+  Standalone page the "Get in touch" button on sponsors.html links
+  to — same idea as newsletter.html: its own page rather than a
+  popup sitting on top of another page. Reuses the existing
+  ".newsletter-card" styling (surface panel, centered) so it doesn't
+  need any new CSS of its own, see style.css section 18.
+
+  The form itself isn't built with this site's markup: the trigger
+  div below (data-customgform / data-mode / data-label) and the
+  cgf.js script tag at the bottom of the page belong to
+  customgform.com — clicking the trigger opens their own popup with
+  the actual form fields. To point this at a different form later,
+  swap the data-customgform id below for the new form's id from
+  customgform.com.
+-->
+<body data-page="sponsor-form.html">
+
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-logo"><span>IRON</span>IC</div>
+    <div class="topbar-number mono">FTC #14226</div>
+  </div>
+  <nav class="topbar-links">
+    <a class="nav-link type-button" href="index.html">Overview</a>
+    <a class="nav-link type-button" href="team.html">Team</a>
+    <a class="nav-link type-button" href="events.html">Events</a>
+    <a class="nav-link type-button" href="history.html">History</a>
+    <a class="nav-link type-button" href="sponsors.html">Sponsors</a>
+  </nav>
+  <div class="topbar-meta type-caption mono">
+    Season 2026–27<br>
+    BIOBUZZ
+  </div>
+</header>
+
+<main class="newsletter-page-main">
+  <div class="newsletter-card">
+    <h1 class="newsletter-title type-caption-heading">Become a Sponsor</h1>
+    <hr class="newsletter-hr">
+    <p class="newsletter-text">Interested in supporting Team IRONIC? Tap below to open our sponsor form and tell us a bit about your business.</p>
+    <div class="type-button sponsor-cta-btn"
+         data-customgform="cmts2jukv003i01rs7cdb7ct8"
+         data-mode="popup"
+         data-label="Get in touch">Get in touch</div>
+  </div>
+</main>
+
+<!-- RGB light strip, cycles through site colors at the very bottom of the page -->
+<div class="rgb-strip"></div>
+
+<script async src="https://cdn.customgform.com/cgf.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

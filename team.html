@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team IRONIC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<!--
+  TEAM PAGE
+
+  What's on this page, top to bottom:
+    1. Top bar (nav), same one every page uses
+    2. Page header, "Our Team" title. No corner gears or faint year
+       watermark here — those only live on the Events page now.
+    3. Team content, one .team-grid per group: Leadership, Code,
+       Build, Media, Coaches (in that order, stacked full width)
+
+  Leadership currently shows two "To Be Revealed" placeholder cards
+  since captains for this season haven't been officially announced
+  yet. Once they're announced, swap the name text back to a real
+  name and this comment can go.
+
+  How to add or remove a member:
+  Copy one <div class="team-card pink"> (or "blue") block inside the
+  group's .team-grid, then swap the photo, name, role and grade.
+  "pink" and "blue" just switch the accent color, doesn't mean
+  anything, use whichever looks better next to the last card.
+
+  Each card's role color comes from the "pink"/"blue" class on
+  .team-card itself, styled in style.css section 12, so there's only
+  one line of role text per card now, no separate tag underneath.
+
+  Top nav links (below) use type-button now instead of
+  type-caption-heading — same smaller size as the site's other
+  buttons, just picked from the existing "type-" options. Applies to
+  every page's topbar, not just this one.
+
+  Full notes on this file's CSS are in style-guide.pdf, section 12.
+-->
+<body data-page="team.html">
+
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-logo"><span>IRON</span>IC</div>
+    <div class="topbar-number mono">FTC #14226</div>
+  </div>
+  <nav class="topbar-links">
+    <a class="nav-link type-button" href="index.html">Overview</a>
+    <a class="nav-link type-button" href="team.html">Team</a>
+    <a class="nav-link type-button" href="events.html">Events</a>
+    <a class="nav-link type-button" href="history.html">History</a>
+    <a class="nav-link type-button" href="sponsors.html">Sponsors</a>
+  </nav>
+  <div class="topbar-meta type-caption mono">
+    Season 2026–27<br>
+    BIOBUZZ
+  </div>
+</header>
+
+  <main>
+
+<div class="page active" id="page-team">
+  <div class="page-header" style="position: relative; text-align: center; overflow: visible;">
+    <h1 class="page-title type-headline" style="white-space: nowrap; position: relative; z-index: 3;">Our Team</h1>
+  </div>
+
+  <div class="team-content">
+
+    <!-- LEADERSHIP: placeholder cards, captains not officially announced yet -->
+    <div class="events-section-title type-caption">Leadership</div>
+    <div class="team-grid" style="margin-bottom: 44px;">
+      <div class="team-card pink">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">To Be Revealed</div>
+          <div class="team-card-role">Captain</div>
+        </div>
+      </div>
+      <div class="team-card blue">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">To Be Revealed</div>
+          <div class="team-card-role">Captain</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CODE -->
+    <div class="events-section-title type-caption">Code</div>
+    <div class="team-grid" style="margin-bottom: 44px;">
+      <div class="team-card blue">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Josh V.</div>
+          <div class="team-card-role">Code</div>
+          <div class="team-card-grade">Grade 12</div>
+        </div>
+      </div>
+      <div class="team-card pink">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Amberlynn P.</div>
+          <div class="team-card-role">Code</div>
+          <div class="team-card-grade">Grade 10</div>
+        </div>
+      </div>
+      <div class="team-card blue">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">John Doe</div>
+          <div class="team-card-role">Code Member</div>
+          <div class="team-card-grade">Grade 9</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUILD -->
+    <div class="events-section-title type-caption">Build</div>
+    <div class="team-grid" style="margin-bottom: 44px;">
+      <div class="team-card pink">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Chase M.</div>
+          <div class="team-card-role">Build</div>
+          <div class="team-card-grade">Grade 12</div>
+        </div>
+      </div>
+      <div class="team-card blue">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Lucas B.</div>
+          <div class="team-card-role">Build</div>
+          <div class="team-card-grade">Grade 12</div>
+        </div>
+      </div>
+      <div class="team-card pink">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Logan M.</div>
+          <div class="team-card-role">Build</div>
+          <div class="team-card-grade">Grade 10</div>
+        </div>
+      </div>
+      <div class="team-card blue">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">John Doe</div>
+          <div class="team-card-role">Build Member</div>
+          <div class="team-card-grade">Grade 11</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEDIA -->
+    <div class="events-section-title type-caption">Media</div>
+    <div class="team-grid" style="margin-bottom: 44px;">
+      <div class="team-card blue">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Imani C.</div>
+          <div class="team-card-role">Media</div>
+          <div class="team-card-grade">Grade 11</div>
+        </div>
+      </div>
+      <div class="team-card pink">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Carly D.</div>
+          <div class="team-card-role">Media</div>
+          <div class="team-card-grade">Grade 12</div>
+        </div>
+      </div>
+      <div class="team-card blue">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Sophie M.</div>
+          <div class="team-card-role">Media</div>
+          <div class="team-card-grade">Grade 12</div>
+        </div>
+      </div>
+      <div class="team-card pink">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">John Doe</div>
+          <div class="team-card-role">Media Member</div>
+          <div class="team-card-grade">Grade 11</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COACHES -->
+    <div class="events-section-title type-caption">Coaches</div>
+    <div class="team-grid" style="margin-bottom: 0px;">
+      <div class="team-card blue">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Ms. McCollough</div>
+          <div class="team-card-role">Coach</div>
+        </div>
+      </div>
+      <div class="team-card pink">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Mr. Foster</div>
+          <div class="team-card-role">Coach</div>
+        </div>
+      </div>
+      <div class="team-card blue">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Mr. Brandon</div>
+          <div class="team-card-role">Coach</div>
+        </div>
+      </div>
+      <div class="team-card pink">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Mr. Joe</div>
+          <div class="team-card-role">Coach</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</main>
+
+<!-- RGB light strip, cycles through site colors at the very bottom of the page -->
+<div class="rgb-strip"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

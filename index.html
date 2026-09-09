@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team IRONIC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<!--
+  HOME / OVERVIEW PAGE
+
+  What's on this page, top to bottom:
+    1. Top bar (nav), same one every page uses
+    2. Hero banner, team name plus the spinning gears
+    3. Overview section, the paragraph, stat numbers, button and countdown card
+    4. RGB strip at the very bottom
+
+  Quick edits:
+  - Bio paragraph, edit the <p class="lead"> text below.
+  - Stat numbers (Seasons, FIRST Events, Rookie Year, Team #), edit
+    the .hero-stat-num spans.
+  - Countdown date, set NEXT_COMP_DATE in script.js. The card now
+    only shows Days (hours/min/sec were dropped from both here and
+    script.js) — so it only needs re-checking once a day, not once
+    a second.
+  - "14226" under the team name uses type-caption-heading now
+    (bumped up from type-subhead) so it reads bigger.
+  - The only CTA left under the paragraph now is "Newsletter →" —
+    the old "Meet the Team →" button that sat next to it was
+    removed. It still has data-modal="newsletter" instead of an
+    onclick navigation — script.js section 4 turns that into a
+    blurred popup instead of a page jump. See style.css section 18
+    and newsletter.html for the rest of that setup.
+  - Full notes on this file's CSS are in style-guide.pdf, sections
+    6 through 10.
+  - Text sizing (headline, subhead, body copy, caption heading,
+    caption, button) comes from the shared "type-" classes in
+    style.css section 15. Anything using Space Mono also gets the
+    "mono" class from that same section.
+  - Top nav links (below) use type-button now instead of
+    type-caption-heading — same smaller size as the site's other
+    buttons, just picked from the existing "type-" options rather
+    than a new size. Applies to every page's topbar, not just this
+    one.
+-->
+<body data-page="index.html">
+
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-logo"><span>IRON</span>IC</div>
+    <div class="topbar-number mono">FTC #14226</div>
+  </div>
+  <nav class="topbar-links">
+    <a class="nav-link type-button" href="index.html">Overview</a>
+    <a class="nav-link type-button" href="team.html">Team</a>
+    <a class="nav-link type-button" href="events.html">Events</a>
+    <a class="nav-link type-button" href="history.html">History</a>
+    <a class="nav-link type-button" href="sponsors.html">Sponsors</a>
+  </nav>
+  <div class="topbar-meta type-caption mono">
+    Season 2026–27<br>
+    BIOBUZZ
+  </div>
+</header>
+
+  <main>
+
+<div class="page active" id="page-overview">
+
+  <!-- Hero banner: title on the left, EST/school info bottom right,
+       gears hanging off the bottom corners -->
+  <div class="hero-banner-wrap">
+
+    <div class="hero-desktop">
+
+      <!-- title block -->
+      <div class="hero-top-row">
+        <div class="hero-title-block">
+          <div class="hero-teamnum type-caption-heading">14226</div>
+          <div class="hero-teamname type-hero-headline">IRONIC</div>
+        </div>
+      </div>
+
+      <!-- meta info, bottom right corner -->
+      <div class="hero-meta-block">
+        <div class="hero-meta-line type-caption mono">EST 2017</div>
+        <div class="hero-meta-line type-caption mono">Manatee School</div>
+        <div class="hero-meta-line type-caption mono">for the Arts</div>
+      </div>
+
+      <!-- decorative spinning gears, bleed off the corners -->
+      <div class="hero-gear-desktop-left">
+        <img src="gear.png" alt="" class="gear-spin">
+      </div>
+      <div class="hero-gear-desktop-right">
+        <img src="gear.png" alt="" class="gear-spin-reverse">
+      </div>
+
+      <!-- cutoff line -->
+      <div class="hero-cutoff-line"></div>
+    </div>
+
+  </div>
+
+  <!-- OVERVIEW: lead paragraph + stat pills + CTA (left) / countdown card (right) -->
+  <div class="overview-hero" style="grid-template-columns: 1fr; border-right: none; border-bottom: none; background: transparent; position: relative; z-index: 2; align-items: start; min-height: 0; margin-top: -100px;">
+
+    <div class="hero-text" style="border-right: none; padding: 0px 340px 40px 340px; background: transparent; display: flex; flex-direction: row; align-items: flex-end; justify-content: flex-start; gap: 60px; flex-wrap: wrap;">
+
+      <!-- left: paragraph + stats -->
+      <div style="flex: 1 1 480px; min-width: 0;">
+        <p class="lead type-body" style="max-width: 640px; margin-bottom: 28px;">We are team IRONIC located in Palmetto, Florida! We have a mission to bring FIRST values and engineering to our local community while participating in the FTC challenges. Our biggest accomplishments include making it to the State Championship during the 2024 season "Into the Deep℠" as well as receiving the Connect Award during the same season and the Control Award during the 2025 season.</p>
+
+        <!-- fact box / stats bar -->
+        <div class="hero-stats" style="position: relative; z-index: 3;">
+          <div class="hero-stat">
+            <span class="hero-stat-num type-caption-heading">8</span>
+            <span class="hero-stat-label type-caption">Seasons</span>
+          </div>
+          <div class="hero-stat-div"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num type-caption-heading">37</span>
+            <span class="hero-stat-label type-caption">FIRST Events</span>
+          </div>
+          <div class="hero-stat-div"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num type-caption-heading">2017</span>
+            <span class="hero-stat-label type-caption">Rookie Year</span>
+          </div>
+          <div class="hero-stat-div"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num type-caption-heading">#14226</span>
+            <span class="hero-stat-label type-caption">Team Number</span>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: row; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 24px;">
+          <button type="button" class="type-button" data-modal="newsletter" style="
+            padding: 12px 27px;
+            background: transparent;
+            color: var(--teal);
+            border: 2px solid var(--teal);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s, border-color 0.15s;
+          " onmouseover="this.style.background='var(--teal)'; this.style.color='var(--bg)'; this.style.borderColor='var(--teal)';" onmouseout="this.style.background='transparent'; this.style.color='var(--teal)'; this.style.borderColor='var(--teal)';">
+            Newsletter →
+          </button>
+        </div>
+      </div>
+
+      <!-- right side: countdown card, lines up with the stats bar automatically -->
+      <div class="countdown-card" id="countdownCard" style="flex: 0 0 380px; align-self: flex-start; margin-top: 40px;">
+        <div class="countdown-label mono">
+          Countdown to Next Competition
+        </div>
+        <div class="countdown-digits">
+          <div class="countdown-unit">
+            <div class="countdown-num" id="cd-days">--</div>
+            <div class="countdown-sublabel mono">Days</div>
+          </div>
+        </div>
+        <div class="countdown-event mono">Kick Off Event · 9/12/26</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- RGB light strip, cycles through site colors at the very bottom of the page -->
+<div class="rgb-strip"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

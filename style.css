@@ -1,0 +1,1018 @@
+/* TABLE OF CONTENTS
+   Full explanations for each numbered section live in
+   style-guide.pdf. This file just keeps the section markers so you
+   can jump around fast.
+
+   1.  Color variables
+   2.  Baseline setup
+   3.  Background texture
+   4.  Navigation bar
+   5.  Page intersection with nav prevention
+   6.  Page headlines
+   7.  Index - General overview
+   8.  Index - decoration
+   9.  Gear spinning animation
+   10. Event countdown card
+   11. Events overall page
+   12. Team overall page
+   13. Scroll bar
+   14. RGB strip
+   15. Typography system
+   16. Utility text colors
+   17. History - past seasons page
+   18. Newsletter card + modal overlay
+   19. Sponsors page
+*/
+
+
+/* 1. Color variables */
+:root {
+  --teal: #00D4C8;
+  --teal-dim: #00A89E;
+  --teal-glow: rgba(0,212,200,0.15);
+  --teal-border: rgba(0,212,200,0.3);
+  --pink: #FF2D78;
+  --pink-dim: rgba(255,45,120,0.15);
+  --bg: #0A0E0E;
+  --bg2: #0F1616;
+  --bg3: #131E1E;
+  --surface: #152020;
+  --surface2: #1C2B2B;
+  --text: #E8F4F4;
+  --text-dim: #7A9999;
+  --text-muted: #3D5555;
+  --border: rgba(0,212,200,0.12);
+}
+
+
+/* 2. Baseline setup */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+
+/* 3. Background texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.6;
+}
+
+
+/* 4. Navigation bar */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 68px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  padding: 0 32px;
+  z-index: 200;
+}
+
+.topbar-brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.topbar-logo {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--teal);
+  letter-spacing: -0.02em;
+}
+
+.topbar-number {
+  font-size: 9px;
+  color: var(--pink);
+  letter-spacing: 0.15em;
+  margin-top: 3px;
+}
+
+.topbar-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 2px solid transparent;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+}
+
+.nav-link:hover { color: var(--teal); border-bottom-color: var(--teal-dim); }
+
+.nav-link.active {
+  color: var(--teal);
+  border-bottom-color: var(--teal);
+}
+
+.nav-link:nth-child(even):hover { color: var(--pink); border-bottom-color: var(--pink); }
+
+.topbar-meta {
+  color: var(--text-muted);
+  text-align: right;
+  line-height: 1.6;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* Nav links are set on Space Mono (already used everywhere via
+   ".mono") instead of Inter. Written as ".topbar .nav-link" (not
+   just ".nav-link") so it beats whichever "type-" class is on the
+   link for font-family — no new font was added, this just points
+   at the other one already loaded.
+
+   Size is handled from the HTML side instead of here: each nav <a>
+   carries "type-button" now (14px) instead of the old
+   "type-caption-heading" (30px) — a smaller size picked from the
+   same shared "type-" system in section 15, applied sitewide across
+   every page's topbar. Bump it up or down by swapping that class on
+   the nav links, not by adding a font-size rule here. */
+.topbar .nav-link { font-family: "Space Mono", monospace; }
+
+
+/* 5. Page intersection with nav prevention */
+main { margin-left: 0; margin-top: 68px; min-height: 100vh; }
+
+.page { display: none; animation: fadeIn 0.3s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+
+/* 6. Page headlines */
+.page-header {
+  padding: 64px 56px 40px;
+  position: relative; overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-title { color: var(--text); }
+
+
+/* 7. Index - General overview */
+.overview-hero {
+  display: grid; grid-template-columns: 1fr 420px;
+  gap: 0; align-items: stretch; min-height: 380px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-text {
+  padding: 56px 56px 48px;
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+
+
+/* 8. Index - decoration */
+.hero-banner-wrap {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  background: var(--bg);
+}
+
+.hero-desktop {
+  position: relative;
+  padding: 56px 56px 0;
+  min-height: 420px;
+}
+
+.hero-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 3;
+  margin-bottom: 28px;
+}
+
+.hero-teamnum {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 6px;
+  margin-bottom: 8px;
+}
+
+.hero-teamname { color: var(--teal); }
+
+.hero-meta-block {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  text-align: right;
+  z-index: 50;
+}
+.hero-meta-line { color: var(--text-dim); line-height: 1.6; }
+.hero-meta-line:first-child { color: var(--pink); font-weight: 700; }
+
+.hero-stats {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  width: fit-content;
+  position: relative;
+  z-index: 3;
+  background: var(--surface);
+  margin-bottom: 40px;
+}
+.hero-stat {
+  padding: 14px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.hero-stat-num { color: var(--pink); }
+.hero-stat-label { color: var(--pink); opacity: 0.7; }
+.hero-stat-div { width: 1px; background: var(--border); flex-shrink: 0; }
+
+.hero-gear-desktop-left {
+  position: absolute;
+  bottom: -460px; left: -300px;
+  width: 600px;
+  opacity: 0.6;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-gear-desktop-right {
+  position: absolute;
+  bottom: -180px; right: -300px;
+  width: 600px;
+  opacity: 0.6;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-cutoff-line {
+  position: relative;
+  z-index: 3;
+  height: 1px;
+  background: linear-gradient(90deg, var(--teal), var(--pink), transparent);
+  margin: 0 -56px;
+}
+
+
+/* 9. Gear spinning animation */
+@keyframes spin-cw  { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes spin-ccw { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+.gear-spin         { animation: spin-cw  20s linear infinite; display: block; width: 100%; }
+.gear-spin-reverse { animation: spin-ccw 20s linear infinite; display: block; width: 100%; }
+
+
+/* 10. Event countdown card */
+.countdown-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 40px 40px 36px;
+}
+.countdown-label {
+  font-size: 13px;
+  color: var(--teal);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.countdown-digits {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+}
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.countdown-num {
+  font-family: "Inter", sans-serif;
+  font-size: 34px;
+  font-weight: 900;
+  color: var(--pink);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  border: 1px solid rgba(255,45,120,0.4);
+  border-radius: 10px;
+  padding: 10px 6px;
+  min-width: 58px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.countdown-sublabel {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.countdown-event {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin-top: 22px;
+}
+
+
+/* 11. Events overall page */
+.events-section-title {
+  color: var(--text-muted);
+  margin-bottom: 24px; display: flex; align-items: center; gap: 16px;
+}
+.events-section-title::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+.events-content { padding: 48px 56px 72px; max-width: 980px; margin: 0 auto; }
+.events-intro { margin-bottom: 40px; }
+
+.event-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+
+.event-card {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 28px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.event-card:hover { border-color: var(--teal-border); transform: translateX(4px); }
+.event-card.featured {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 1px var(--teal), 0 0 24px var(--teal-glow);
+}
+
+.event-date-block {
+  flex-shrink: 0;
+  width: 84px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  padding-right: 22px;
+}
+.event-month {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--pink);
+  margin-bottom: 4px;
+}
+.event-day { color: var(--text); }
+.event-day.multi { font-size: 19px; }
+.event-year {
+  font-size: 10px; color: var(--text-muted); margin-top: 3px;
+}
+
+.event-body { flex: 1; min-width: 0; }
+.event-name-row {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.event-name {
+  font-size: 18px; font-weight: 700; color: var(--text); letter-spacing: -0.01em;
+}
+
+.event-location {
+  font-size: 12px; color: var(--text-dim); letter-spacing: 0.03em;
+}
+.event-location.tbd { color: var(--text-muted); font-style: italic; }
+
+
+/* 12. Team overall page */
+.team-content { padding: 48px 56px 72px; }
+.team-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  width: 100% !important;
+  gap: 28px 24px; margin-bottom: 56px;
+}
+.team-card {
+  background: transparent; border: none; border-radius: 0;
+  overflow: visible; transition: transform 0.2s;
+  width: 210px; flex-shrink: 0;
+}
+.team-card:hover { transform: translateY(-6px); }
+.team-card-img { position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: 4px; margin-bottom: 14px; }
+.team-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(0) brightness(0.6); transition: filter 0.35s;
+}
+.team-card:hover .team-card-img img { filter: saturate(0.2) brightness(0.75); }
+.team-card-img::after {
+  content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 60%; background: linear-gradient(to top, rgba(10,14,14,0.85), transparent);
+}
+.team-card-img::before {
+  content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--teal); z-index: 2; transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.team-card:hover .team-card-img::before { transform: scaleX(1); }
+.team-card.pink .team-card-img::before { background: var(--pink); }
+.team-card.blue .team-card-img::before { background: var(--teal); }
+.team-card-body { padding: 0; text-align: center; }
+.team-card-name { color: var(--text); margin-bottom: 4px; }
+.team-card-role { font-size: 11px; font-weight: 500; color: var(--teal); text-transform: uppercase; letter-spacing: 0.06em; }
+.team-card.pink .team-card-role { color: var(--pink); }
+.team-card.blue .team-card-role { color: var(--teal); }
+.team-card-grade { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+.team-content .events-section-title {
+  justify-content: center;
+}
+.team-content .events-section-title::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+
+/* 13. Scroll bar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--pink), var(--teal));
+  border-radius: 2px;
+}
+
+
+/* 14. RGB strip */
+.rgb-strip {
+  display: block;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(90deg,
+    var(--teal), var(--pink), var(--teal-dim), var(--pink), var(--teal));
+  background-size: 300% 100%;
+  animation: rgbCycle 8s linear infinite;
+  z-index: 250;
+  pointer-events: none;
+}
+@keyframes rgbCycle {
+  0%   { background-position: 0% 0; }
+  100% { background-position: 300% 0; }
+}
+
+
+/* 15. Typography system */
+.type-hero-headline {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(80px, 11vw, 160px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+}
+
+.type-headline {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(42px, 6vw, 80px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.type-subhead {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.type-body {
+  font-family: "Inter", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.8;
+  max-width: 680px;
+}
+
+.type-caption-heading {
+  font-family: "Inter", sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.type-caption {
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.type-button {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.type-names {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.mono { font-family: "Space Mono", monospace; }
+
+
+/* 16. Utility text colors */
+.text-teal { color: var(--teal); }
+.text-pink { color: var(--pink); }
+.text-dim  { color: var(--text-dim); }
+
+
+/* 17. History - past seasons page
+   Three-column pattern per Chase's whiteboard sketch:
+     - left:   .history-locator, a slightly lighter bar flush against
+               the very left edge of the screen, full page height,
+               holding the sticky season tabs
+     - center: .season-main, one big photo + write-up per season,
+               with .season-awards stacked underneath it. Capped to a
+               comfortable reading width and CENTERED in the space
+               between the locator bar and the gallery (flex-grow
+               plus auto side-margins — not pinned to the left edge
+               of that space).
+     - right:  .season-gallery, one tall "photo log" composite,
+               width set by --gallery-w (on .history-seasons below —
+               change it there, not per-block), flush against the
+               true right edge of the screen (no page padding
+               stopping it)
+
+   No new type sizes here — every text element below reuses one of
+   the existing "type-" classes (or the plain body font) from section
+   15, same as the rest of the site.
+
+   Each season lives in one .season-block. Copy a whole block to add
+   a season, and add a matching .locator-link up in the nav column
+   (href="#season-XXXX-XX" has to match the block's id). The
+   scrollspy in script.js highlights whichever locator link is
+   currently on screen, no manual wiring needed beyond that.
+
+   .season-gallery normally holds ONE tall composite photo per season
+   (Chase builds these himself once each season's write-up text is
+   final, so the image comes out the right height to match). Swap the
+   .gallery-photolog.placeholder div for a real
+   <div class="gallery-photolog"><img src="..."></div> when that
+   photo exists — no other markup changes needed.
+
+   Until a proper composite exists for a season, ".gallery-photolog
+   .stack" is a lightweight fallback: drop two or more real photos
+   straight in (no placeholder text) and they stack to fill the same
+   tall column, each cropped to fill its share of the height. Swap it
+   out for a single composite <img> later if Chase builds one. */
+.history-content {
+  display: flex;
+  align-items: stretch; /* lets the locator bar's background stretch to match the full season list's height */
+  width: 100%;
+}
+
+.history-locator {
+  flex: 0 0 200px;
+  background: var(--surface); /* one step lighter than the page background, same token used elsewhere for panels */
+  border-right: 1px solid var(--border);
+}
+.history-locator-inner {
+  position: sticky;
+  top: 68px; /* sits right under the fixed topbar */
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.history-locator-label {
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  padding: 0 14px;
+}
+.locator-link {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 14px;
+  border-left: 2px solid var(--border);
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.locator-link:hover { color: var(--teal); border-left-color: var(--teal-dim); }
+.locator-link.active {
+  color: var(--teal);
+  border-left-color: var(--teal);
+  background: var(--surface2);
+  border-radius: 0 8px 8px 0;
+}
+.locator-link.active .locator-game { color: var(--teal); opacity: 0.75; }
+
+.history-seasons {
+  /* --gallery-w is shared with .season-gallery and .season-block.stub
+     below so the gallery's width and the stub's reserved space for
+     it never drift out of sync — change it in one place. */
+  --gallery-w: 460px;
+  flex: 1;
+  min-width: 0;
+  padding: 48px 0 96px 48px; /* no right padding — lets .season-gallery run flush to the screen edge */
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.season-block {
+  scroll-margin-top: 24px;
+  display: flex;
+  align-items: stretch;
+  padding-bottom: 64px;
+  border-bottom: 1px solid var(--border);
+}
+.season-block:last-child { border-bottom: none; padding-bottom: 0; }
+
+.season-main {
+  /* flex-grow + the auto side margins center this column in
+     whatever room is left between the locator bar and the gallery,
+     instead of sitting flush against the locator */
+  flex: 1 1 auto;
+  max-width: 680px;
+  min-width: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.season-photo {
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  position: relative;
+}
+.season-photo img { width: 100%; height: 100%; object-fit: cover; }
+.season-photo.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 20px;
+}
+
+.season-heading-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.season-game { color: var(--teal); }
+.season-years { color: var(--text-muted); }
+
+.season-desc { margin-top: 10px; }
+
+.season-awards {
+  margin-top: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 26px;
+}
+.season-awards-title {
+  color: var(--pink);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.award-list { display: flex; flex-direction: column; gap: 18px; }
+.award-item { display: flex; align-items: flex-start; gap: 16px; }
+.award-image {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+}
+.award-image img { width: 100%; height: 100%; object-fit: cover; }
+.award-body { min-width: 0; }
+.award-name { color: var(--text); display: block; margin-bottom: 4px; }
+.award-desc { color: var(--text-dim); }
+.season-awards.tbd { color: var(--text-muted); font-style: italic; }
+
+.season-gallery {
+  /* One tall "photo log" per season rather than a grid of small
+     shots — Chase builds this as a single composite image sized to
+     the write-up once the text is final. Fixed width (--gallery-w,
+     set on .history-seasons above), flush against the screen's
+     right edge since nothing pads .history-content/.history-seasons
+     on that side. */
+  flex: 0 0 var(--gallery-w);
+  display: flex;
+}
+.gallery-photolog {
+  flex: 1;
+  border-radius: 12px 0 0 12px;
+  border: 1px dashed var(--border);
+  border-right: none;
+  background: var(--surface2);
+  overflow: hidden;
+}
+.gallery-photolog img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.gallery-photolog.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* Fallback for a season with real photos but no single built
+   composite yet (see the section-17 header note above): stacks
+   however many <img> children it's given evenly down the same
+   tall column a composite would otherwise fill. */
+.gallery-photolog.stack {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+}
+.gallery-photolog.stack img {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  object-fit: cover;
+}
+.gallery-photolog.stack img + img { border-top: 1px solid var(--border); }
+
+/* The founding-year block has no gallery, but it still reserves
+   that same width on its right so its centered text lines up with
+   every other season's centered text above/below it. */
+.season-block.stub { padding-right: var(--gallery-w); }
+
+@media (max-width: 980px) {
+  .history-content { flex-direction: column; }
+  .history-locator {
+    flex: 0 0 auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .history-locator-inner {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  .history-seasons { padding: 32px 24px 64px 24px; }
+  .season-block { flex-direction: column; }
+  .season-block.stub { padding-right: 0; }
+  .season-main { max-width: none; margin: 0; }
+  .season-gallery { flex-basis: auto; min-height: 220px; margin-top: 20px; }
+  .gallery-photolog { border-radius: 12px; border-right: 1px dashed var(--border); }
+  .gallery-photolog.stack { min-height: 360px; }
+}
+
+
+/* 18. Newsletter card + modal overlay
+   ".newsletter-card" is the visual box itself (bg, border, radius,
+   the form styling inside it) — used two places:
+     - newsletter.html, sitting centered in the page on its own, for
+       anyone who lands there directly (a shared link, a bookmark,
+       JS disabled)
+     - the sitewide modal that script.js builds and injects into
+       every page, wrapped in ".modal-overlay" so it appears as a
+       blurred-backdrop popup on top of whatever page you clicked
+       "Newsletter" from, instead of navigating away.
+   Both reuse the exact same ".newsletter-card" rules so the two
+   never drift out of sync visually — change the look once, here. */
+.newsletter-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 48px 40px 40px;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+.newsletter-title { color: var(--teal); }
+.newsletter-hr {
+  width: 60px;
+  height: 2px;
+  margin: 24px auto;
+  border: 0;
+  background: var(--border);
+}
+.newsletter-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+}
+.newsletter-card form { display: flex; flex-direction: column; gap: 16px; }
+.newsletter-card input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  height: 50px;
+  padding: 0 18px;
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.newsletter-card input::placeholder { color: var(--text-muted); }
+.newsletter-card input:focus { border-color: var(--teal); }
+.newsletter-submit {
+  border: 2px solid var(--teal);
+  border-radius: 8px;
+  min-height: 50px;
+  background: transparent;
+  color: var(--teal);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.newsletter-submit:hover:not(:disabled) { background: var(--teal); color: var(--bg); }
+.newsletter-submit:disabled { opacity: 0.6; cursor: default; }
+.newsletter-feedback { margin-top: 16px; font-size: 13px; color: var(--teal); min-height: 16px; }
+.newsletter-feedback.is-error { color: var(--pink); }
+
+/* Standalone newsletter.html page: same topbar as every other page,
+   card centered in the space below it. */
+.newsletter-page-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 68px);
+  padding: 60px 20px;
+}
+
+/* Sitewide "open on top of the current page" overlay. Sits above the
+   topbar/rgb-strip (z-index 200/250) but below the faint noise
+   texture (z-index 9999, section 3) — that layer has
+   pointer-events:none so it never blocks clicks, it just keeps
+   layering its grain over the modal same as it does everywhere
+   else on the site. */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6,9,9,0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 500;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-overlay .newsletter-card {
+  transform: scale(0.92) translateY(10px);
+  transition: transform 0.25s ease;
+}
+.modal-overlay.active .newsletter-card { transform: scale(1) translateY(0); }
+
+.modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.modal-close:hover { color: var(--pink); border-color: var(--pink); }
+
+/* Locks page scroll behind the blur while a modal is open. */
+body.modal-open { overflow: hidden; }
+
+
+/* 19. Sponsors page
+   Sponsor logos are grouped into three tiers by visual weight:
+     - .sponsor-grid.large   — 2 big tiles side by side (Gold tier)
+     - .sponsor-grid.medium  — 3 medium tiles (Silver tier)
+     - .sponsor-grid.small   — 4-5 smaller tiles (Bronze tier)
+   Every tile is a square (1:1 aspect-ratio, sized per tier below) —
+   currently a dashed placeholder box (same look as
+   .season-photo.placeholder / .gallery-photolog.placeholder
+   elsewhere on the site) — swap a tile's placeholder <span> for a
+   real <img src="..."> once a sponsor sends over their logo, no
+   other markup changes needed. Add/remove tiles freely, the
+   flex-wrap layout reflows and wraps on its own.
+
+   .sponsor-cta-btn matches the "Newsletter" button's look on the
+   overview page (transparent, teal outline, fills teal on hover),
+   but it is NOT wired to anything yet on purpose — no href, no
+   mailto, no modal — since there's nowhere for it to go until a
+   sponsor contact method is picked. Wire it up whenever that's
+   ready. */
+.sponsors-content { padding: 48px 56px 80px; max-width: 1300px; margin: 0 auto; }
+
+.sponsor-cta {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 64px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+.sponsor-cta p { margin-bottom: 28px; }
+.sponsor-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 27px;
+  background: transparent;
+  color: var(--teal);
+  border: 2px solid var(--teal);
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none; /* now used on an <a> (links to sponsor-form.html) rather than a <button> */
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.sponsor-cta-btn:hover { background: var(--teal); color: var(--bg); }
+
+.sponsor-tier { margin-bottom: 56px; }
+.sponsor-tier:last-child { margin-bottom: 0; }
+
+.sponsor-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+
+.sponsor-tile {
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface2);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 16px;
+  transition: border-color 0.2s;
+}
+.sponsor-tile:hover { border-color: var(--teal-border); }
+.sponsor-tile img { width: 100%; height: 100%; object-fit: contain; }
+
+.sponsor-grid.large .sponsor-tile { width: 560px; aspect-ratio: 1 / 1; }
+.sponsor-grid.medium .sponsor-tile { width: 400px; aspect-ratio: 1 / 1; }
+.sponsor-grid.small .sponsor-tile { width: 280px; aspect-ratio: 1 / 1; }
+
+@media (max-width: 980px) {
+  .sponsors-content { padding: 40px 24px 64px; }
+  .sponsor-grid.large .sponsor-tile { width: 100%; max-width: 560px; }
+  .sponsor-grid.medium .sponsor-tile { width: 100%; max-width: 400px; }
+  .sponsor-grid.small .sponsor-tile { width: 100%; max-width: 280px; }
+}

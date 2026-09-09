@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team IRONIC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<!--
+  PAST SEASONS / HISTORY PAGE  —  MOCKUP DRAFT
+
+  What's on this page, top to bottom:
+    1. Top bar (nav), same one every page uses (note: style.css
+       section 4 now points the nav links at Space Mono instead of
+       Inter, site-wide, and at type-button instead of
+       type-caption-heading for a smaller size — not just on this
+       page)
+    2. Page header, "Past Seasons" title. No spinning gears and no
+       faint year watermark on this page (unlike the others).
+    3. History content: a slightly-lighter full-height bar on the
+       very left edge of the screen holding the sticky season tabs,
+       then one .season-block per season — main photo + write-up +
+       awards (capped to a readable width and centered in the gap
+       between that locator bar and the gallery, not stuck to the
+       left), and a "photo log" placeholder on the right, sized by
+       --gallery-w and pushed flush against the true edge of the
+       screen. Newest season first, down through the founding year.
+
+  Still a layout mockup, not final content — every .season-desc is a
+  filler paragraph and every award image/description is a filler
+  too, search "PLACEHOLDER" for the rest. Seasons with nothing to
+  show yet just say "Unknown" under Awards. No new font sizes were
+  introduced anywhere on this page: every bit of text reuses one of
+  the existing "type-" classes from style.css section 15 (or, where
+  noted, just the plain body font already used site-wide).
+
+  Season list, newest to oldest:
+    2025–26  DECODE
+    2024–25  Into the Deep℠
+    2023–24  CENTERSTAGE
+    2022–23  POWERPLAY
+    2021–22  Freight Frenzy
+    2020–21  Ultimate Goal
+    2019–20  Skystone
+    2018–19  Rover Ruckus     ← first competitive season
+    2017–18  Founding / rookie year (team formed, no competition yet)
+  The upcoming 2026–27 BIOBUZZ season isn't included — it hasn't
+  happened yet, so it's not history. Once it wraps, copy the
+  2025–26 block as a template for it.
+
+  How to add detail to a season once you're ready:
+  1. Swap that season's .season-photo placeholder for a real photo.
+  2. Replace the lorem ipsum .season-desc paragraph with the real
+     write-up.
+  3. Fill in .season-awards (or swap the whole block for the .tbd
+     version if there's nothing to list — see 2023–24 for an
+     example of the empty state). Each award is an image (put the
+     real award photo/graphic in place of portraitplaceholder.png),
+     the award name, and a sentence on how the team earned it.
+  4. Once Chase has the season's photo-log composite image sized to
+     match the write-up, swap the .gallery-photolog.placeholder div
+     for a real <div class="gallery-photolog"><img src="..."></div>.
+
+  How to add a whole new season (e.g. once 2026–27 wraps):
+  1. Copy one whole <div class="season-block" id="season-XXXX-XX">
+     block and swap in that season's content per the steps above.
+  2. Copy one <a class="locator-link"> inside .history-locator-inner
+     and point its href at that same #season-XXXX-XX id.
+  3. Keep both the locator links and the season blocks newest to
+     oldest (top to bottom), same as below.
+
+  Full notes on this file's CSS are in style-guide.pdf, section 17.
+-->
+<body data-page="history.html">
+
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-logo"><span>IRON</span>IC</div>
+    <div class="topbar-number mono">FTC #14226</div>
+  </div>
+  <nav class="topbar-links">
+    <a class="nav-link type-button" href="index.html">Overview</a>
+    <a class="nav-link type-button" href="team.html">Team</a>
+    <a class="nav-link type-button" href="events.html">Events</a>
+    <a class="nav-link type-button" href="history.html">History</a>
+    <a class="nav-link type-button" href="sponsors.html">Sponsors</a>
+  </nav>
+  <div class="topbar-meta type-caption mono">
+    Season 2026–27<br>
+    BIOBUZZ
+  </div>
+</header>
+
+  <main>
+
+<div class="page active" id="page-history">
+  <div class="page-header" style="position: relative; text-align: center; overflow: visible;">
+    <h1 class="page-title type-headline" style="white-space: nowrap; position: relative; z-index: 3;">Past Seasons</h1>
+    <!-- no corner gears and no faint year watermark on this page, unlike the others -->
+  </div>
+
+  <div class="history-content">
+
+    <!-- LEFT: lighter full-height bar, flush with the screen edge, holding the season tabs -->
+    <div class="history-locator">
+      <nav class="history-locator-inner" aria-label="Jump to season">
+        <div class="history-locator-label type-caption">Seasons</div>
+
+        <a class="locator-link" href="#season-2025-26">
+          <span class="locator-season type-names mono">2025–26</span>
+          <span class="locator-game type-caption mono">DECODE</span>
+        </a>
+        <a class="locator-link" href="#season-2024-25">
+          <span class="locator-season type-names mono">2024–25</span>
+          <span class="locator-game type-caption mono">Into the Deep</span>
+        </a>
+        <a class="locator-link" href="#season-2023-24">
+          <span class="locator-season type-names mono">2023–24</span>
+          <span class="locator-game type-caption mono">CENTERSTAGE</span>
+        </a>
+        <a class="locator-link" href="#season-2022-23">
+          <span class="locator-season type-names mono">2022–23</span>
+          <span class="locator-game type-caption mono">POWERPLAY</span>
+        </a>
+        <a class="locator-link" href="#season-2021-22">
+          <span class="locator-season type-names mono">2021–22</span>
+          <span class="locator-game type-caption mono">Freight Frenzy</span>
+        </a>
+        <a class="locator-link" href="#season-2020-21">
+          <span class="locator-season type-names mono">2020–21</span>
+          <span class="locator-game type-caption mono">Ultimate Goal</span>
+        </a>
+        <a class="locator-link" href="#season-2019-20">
+          <span class="locator-season type-names mono">2019–20</span>
+          <span class="locator-game type-caption mono">Skystone</span>
+        </a>
+        <a class="locator-link" href="#season-2018-19">
+          <span class="locator-season type-names mono">2018–19</span>
+          <span class="locator-game type-caption mono">Rover Ruckus</span>
+        </a>
+        <a class="locator-link" href="#season-2017-18">
+          <span class="locator-season type-names mono">2017–18</span>
+          <span class="locator-game type-caption mono">Founding</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- RIGHT-OF-BAR: the seasons themselves, newest first -->
+    <div class="history-seasons">
+
+      <!-- ============ 2025–26 · DECODE ============ -->
+      <div class="season-block" id="season-2025-26">
+        <div class="season-main">
+
+          <div class="season-photo">
+            <img src="2025-2026-TeamPic.jpg" alt="Team IRONIC kneeling for a group photo with the DECODE robot in front of the Gulf Coast Robotics League banners.">
+          </div>
+
+          <div class="season-heading-row">
+            <span class="season-game type-subhead mono">DECODE</span>
+            <span class="season-years type-caption mono">2025–26</span>
+          </div>
+
+          <p class="season-desc type-body text-dim">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+
+          <div class="season-awards">
+            <div class="season-awards-title type-caption">Awards</div>
+            <div class="award-list">
+              <div class="award-item">
+                <div class="award-image"><img src="portraitplaceholder.png" alt=""></div>
+                <div class="award-body">
+                  <span class="award-name type-names">Control Award</span>
+                  <p class="award-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="season-gallery">
+          <div class="gallery-photolog placeholder">
+            <span class="type-caption mono">Photo Log</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 2024–25 · Into the Deep ============ -->
+      <div class="season-block" id="season-2024-25">
+        <div class="season-main">
+
+          <div class="season-photo">
+            <img src="2024-2025-TeamPic.jpg" alt="Team IRONIC posing with banners and their trophy after the Gulf Coast Robotics League Tournament.">
+          </div>
+
+          <div class="season-heading-row">
+            <span class="season-game type-subhead mono">Into the Deep℠</span>
+            <span class="season-years type-caption mono">2024–25</span>
+          </div>
+
+          <p class="season-desc type-body text-dim">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+
+          <div class="season-awards">
+            <div class="season-awards-title type-caption">Awards</div>
+            <div class="award-list">
+              <div class="award-item">
+                <div class="award-image"><img src="2024-2025-ConnectAward.jpg" alt=""></div>
+                <div class="award-body">
+                  <span class="award-name type-names">Connect Award</span>
+                  <p class="award-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="season-gallery">
+          <div class="gallery-photolog placeholder">
+            <span class="type-caption mono">Photo Log</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 2023–24 · CENTERSTAGE ============ -->
+      <div class="season-block" id="season-2023-24">
+        <div class="season-main">
+
+          <div class="season-photo placeholder">
+            <span class="type-caption text-dim">PLACEHOLDER — main season photo</span>
+          </div>
+
+          <div class="season-heading-row">
+            <span class="season-game type-subhead mono">CENTERSTAGE</span>
+            <span class="season-years type-caption mono">2023–24</span>
+          </div>
+
+          <p class="season-desc type-body text-dim">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+
+          <div class="season-awards tbd">
+            Unknown
+          </div>
+
+        </div>
+
+        <div class="season-gallery">
+          <div class="gallery-photolog placeholder">
+            <span class="type-caption mono">Photo Log</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 2022–23 · POWERPLAY ============ -->
+      <div class="season-block" id="season-2022-23">
+        <div class="season-main">
+
+          <div class="season-photo placeholder">
+            <span class="type-caption text-dim">PLACEHOLDER — main season photo</span>
+          </div>
+
+          <div class="season-heading-row">
+            <span class="season-game type-subhead mono">POWERPLAY</span>
+            <span class="season-years type-caption mono">2022–23</span>
+          </div>
+
+          <p class="season-desc type-body text-dim">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+
+          <div class="season-awards tbd">
+            Unknown
+          </div>
+
+        </div>
+
+        <div class="season-gallery">
+          <div class="gallery-photolog placeholder">
+            <span class="type-caption mono">Photo Log</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 2021–22 · Freight Frenzy ============ -->
+      <div class="season-block" id="season-2021-22">
+        <div class="season-main">
+
+          <div class="season-photo placeholder">
+            <span class="type-caption text-dim">PLACEHOLDER — main season photo</span>
+          </div>
+
+          <div class="season-heading-row">
+            <span class="season-game type-subhead mono">Freight Frenzy</span>
+            <span class="season-years type-caption mono">2021–22</span>
+          </div>
+
+          <p class="season-desc type-body text-dim">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+
+          <div class="season-awards tbd">
+            Unknown
+          </div>
+
+        </div>
+
+        <div class="season-gallery">
+          <div class="gallery-photolog placeholder">
+            <span class="type-caption mono">Photo Log</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 2020–21 · Ultimate Goal ============ -->
+      <div class="season-block" id="season-2020-21">
+        <div class="season-main">
+
+          <div class="season-photo placeholder">
+            <span class="type-caption text-dim">PLACEHOLDER — main season photo</span>
+          </div>
+
+          <div class="season-heading-row">
+            <span class="season-game type-subhead mono">Ultimate Goal</span>
+            <span class="season-years type-caption mono">2020–21</span>
+          </div>
+
+          <p class="season-desc type-body text-dim">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+
+          <div class="season-awards tbd">
+            Unknown
+          </div>
+
+        </div>
+
+        <div class="season-gallery">
+          <div class="gallery-photolog placeholder">
+            <span class="type-caption mono">Photo Log</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 2019–20 · Skystone ============ -->
+      <div class="season-block" id="season-2019-20">
+        <div class="season-main">
+
+          <div class="season-photo placeholder">
+            <span class="type-caption text-dim">PLACEHOLDER — main season photo</span>
+          </div>
+
+          <div class="season-heading-row">
+            <span class="season-game type-subhead mono">Skystone</span>
+            <span class="season-years type-caption mono">2019–20</span>
+          </div>
+
+          <p class="season-desc type-body text-dim">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+
+          <div class="season-awards tbd">
+            Unknown
+          </div>
+
+        </div>
+
+        <div class="season-gallery">
+          <div class="gallery-photolog placeholder">
+            <span class="type-caption mono">Photo Log</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 2018–19 · Rover Ruckus (first competitive season) ============ -->
+      <div class="season-block" id="season-2018-19">
+        <div class="season-main">
+
+          <div class="season-photo placeholder">
+            <span class="type-caption text-dim">PLACEHOLDER — main season photo</span>
+          </div>
+
+          <div class="season-heading-row">
+            <span class="season-game type-subhead mono">Rover Ruckus</span>
+            <span class="season-years type-caption mono">2018–19</span>
+            <span class="type-caption text-pink">First Competitive Season</span>
+          </div>
+
+          <p class="season-desc type-body text-dim">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+
+          <div class="season-awards tbd">
+            Unknown
+          </div>
+
+        </div>
+
+        <div class="season-gallery">
+          <div class="gallery-photolog placeholder">
+            <span class="type-caption mono">Photo Log</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 2017–18 · Founding / rookie year (no competition yet) ============ -->
+      <div class="season-block stub" id="season-2017-18">
+        <div class="season-main">
+
+          <div class="season-heading-row">
+            <span class="season-game type-subhead mono">Founding</span>
+            <span class="season-years type-caption mono">2017–18</span>
+          </div>
+
+          <p class="season-desc type-body text-dim">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</main>
+
+<!-- RGB light strip, cycles through site colors at the very bottom of the page -->
+<div class="rgb-strip"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team IRONIC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<!--
+  EVENTS / SCHEDULE PAGE
+
+  What's on this page, top to bottom:
+    1. Top bar (nav), same one every page uses
+    2. Page header, "Season Schedule" title plus the corner gears —
+       this is the only page that still has them (Team's copy got
+       removed) and the faint year watermark got dropped here too
+    3. Events content, intro text, and .event-timeline
+
+  How to add an event:
+  Copy one <div class="event-card"> block inside .event-timeline and
+  edit the month, day, year, event name and location.
+
+  The event type tag used to be a pill badge, that got dropped. It's
+  now just plain text using the shared "type-caption" class plus a
+  color: "text-teal" for kickoff/championship, "text-pink" for
+  meet/judging, "text-dim" for scrimmage. Add class "featured" to
+  event-card for the glowing highlight, that's what the championship
+  uses.
+
+  Top nav links (below) use type-button now instead of
+  type-caption-heading — same smaller size as the site's other
+  buttons, just picked from the existing "type-" options. Applies to
+  every page's topbar, not just this one.
+
+  Full notes on this file's CSS are in style-guide.pdf, section 11.
+-->
+<body data-page="events.html">
+
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-logo"><span>IRON</span>IC</div>
+    <div class="topbar-number mono">FTC #14226</div>
+  </div>
+  <nav class="topbar-links">
+    <a class="nav-link type-button" href="index.html">Overview</a>
+    <a class="nav-link type-button" href="team.html">Team</a>
+    <a class="nav-link type-button" href="events.html">Events</a>
+    <a class="nav-link type-button" href="history.html">History</a>
+    <a class="nav-link type-button" href="sponsors.html">Sponsors</a>
+  </nav>
+  <div class="topbar-meta type-caption mono">
+    Season 2026–27<br>
+    BIOBUZZ
+  </div>
+</header>
+
+  <main>
+
+<div class="page active" id="page-events">
+  <div class="page-header" style="position: relative; text-align: center; overflow: visible;">
+    <h1 class="page-title type-headline" style="white-space: nowrap; position: relative; z-index: 3;">Season Schedule</h1>
+
+    <!-- top-right gear -->
+    <div style="position: absolute; top: 0; right: 0; width: 600px; height: 600px; overflow: hidden; pointer-events: none; z-index: 1;">
+      <img src="gear.png" alt="" style="position: absolute; top: -600px; right: -600px; width: 1200px; height: 1200px; opacity: 0.35; animation: spin-cw 20s linear infinite;">
+    </div>
+
+    <!-- top-left gear -->
+    <div style="position: absolute; top: 0; left: 0; width: 600px; height: 600px; overflow: hidden; pointer-events: none; z-index: 1;">
+      <img src="gear.png" alt="" style="position: absolute; top: -600px; left: -600px; width: 1200px; height: 1200px; opacity: 0.35; animation: spin-ccw 20s linear infinite;">
+    </div>
+  </div>
+
+  <div class="events-content">
+
+    <p class="lead type-body events-intro">
+      Here's where to find Team IRONIC this season. Dates below come straight from our league, we'll
+      update this page the moment venues and any remaining dates are confirmed, so check back before you head out.
+    </p>
+
+    <div class="events-section-title type-caption">2026–27 Competition Schedule</div>
+
+    <div class="event-timeline">
+
+      <!-- Kick Off -->
+      <div class="event-card">
+        <div class="event-date-block">
+          <div class="event-month mono">Sep</div>
+          <div class="event-day type-caption-heading">12</div>
+          <div class="event-year mono">2026</div>
+        </div>
+        <div class="event-body">
+          <div class="event-name-row">
+            <span class="event-name">Kick Off Event</span>
+            <span class="type-caption text-teal">Kickoff</span>
+          </div>
+          <div class="event-location mono">Charlotte HS</div>
+        </div>
+      </div>
+
+      <!-- Scrimmage -->
+      <div class="event-card">
+        <div class="event-date-block">
+          <div class="event-month mono">Oct</div>
+          <div class="event-day multi type-caption-heading">17/24</div>
+          <div class="event-year mono">2026</div>
+        </div>
+        <div class="event-body">
+          <div class="event-name-row">
+            <span class="event-name">Scrimmage</span>
+            <span class="type-caption text-dim">Scrimmage</span>
+          </div>
+          <div class="event-location tbd mono">Location TBD</div>
+        </div>
+      </div>
+
+      <!-- Meet 1 -->
+      <div class="event-card">
+        <div class="event-date-block">
+          <div class="event-month mono">Nov</div>
+          <div class="event-day type-caption-heading">14</div>
+          <div class="event-year mono">2026</div>
+        </div>
+        <div class="event-body">
+          <div class="event-name-row">
+            <span class="event-name">Meet 1</span>
+            <span class="type-caption text-pink">League Meet</span>
+          </div>
+          <div class="event-location tbd mono">Location TBD</div>
+        </div>
+      </div>
+
+      <!-- Meet 2 -->
+      <div class="event-card">
+        <div class="event-date-block">
+          <div class="event-month mono">Dec</div>
+          <div class="event-day type-caption-heading">5</div>
+          <div class="event-year mono">2026</div>
+        </div>
+        <div class="event-body">
+          <div class="event-name-row">
+            <span class="event-name">Meet 2</span>
+            <span class="type-caption text-pink">League Meet</span>
+          </div>
+          <div class="event-location tbd mono">Location TBD</div>
+        </div>
+      </div>
+
+      <!-- Meet 3 -->
+      <div class="event-card">
+        <div class="event-date-block">
+          <div class="event-month mono">Jan</div>
+          <div class="event-day multi type-caption-heading">9/16</div>
+          <div class="event-year mono">2027</div>
+        </div>
+        <div class="event-body">
+          <div class="event-name-row">
+            <span class="event-name">Meet 3</span>
+            <span class="type-caption text-pink">League Meet</span>
+          </div>
+          <div class="event-location tbd mono">Location TBD</div>
+        </div>
+      </div>
+
+      <!-- Judging -->
+      <div class="event-card">
+        <div class="event-date-block">
+          <div class="event-month mono">Jan</div>
+          <div class="event-day type-caption-heading">30</div>
+          <div class="event-year mono">2027</div>
+        </div>
+        <div class="event-body">
+          <div class="event-name-row">
+            <span class="event-name">League Judging Interviews</span>
+            <span class="type-caption text-pink">Judging</span>
+          </div>
+          <div class="event-location mono">Via Zoom</div>
+        </div>
+      </div>
+
+      <!-- Championship -->
+      <div class="event-card featured">
+        <div class="event-date-block">
+          <div class="event-month mono">Feb</div>
+          <div class="event-day type-caption-heading">13</div>
+          <div class="event-year mono">2027</div>
+        </div>
+        <div class="event-body">
+          <div class="event-name-row">
+            <span class="event-name">League Championship</span>
+            <span class="type-caption text-teal">Championship</span>
+          </div>
+          <div class="event-location tbd mono">Location TBD</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</main>
+
+<!-- RGB light strip, cycles through site colors at the very bottom of the page -->
+<div class="rgb-strip"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

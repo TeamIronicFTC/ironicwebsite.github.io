@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newsletter Signup — Team IRONIC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<!--
+  NEWSLETTER SIGNUP PAGE
+
+  This is the direct-link fallback: anyone who lands here straight
+  (a shared URL, a bookmark, a browser with JS off) gets the same
+  themed signup card as the popup version, just sitting on its own
+  page instead of floating over a blurred page. Same topbar as every
+  other page.
+
+  From every other page on the site, the "Newsletter" link/button
+  opens this same card as a blurred overlay instead of navigating
+  here — that's handled by script.js section 4 and the
+  ".newsletter-card" styles in style.css section 18. Keep the form
+  fields and the Formspree endpoint below in sync with the copy of
+  this markup script.js builds, so the two versions never drift.
+
+  Top nav links (below) use type-button now instead of
+  type-caption-heading — same smaller size as the site's other
+  buttons, just picked from the existing "type-" options. Applies to
+  every page's topbar, not just this one.
+-->
+<body data-page="newsletter.html">
+
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-logo"><span>IRON</span>IC</div>
+    <div class="topbar-number mono">FTC #14226</div>
+  </div>
+  <nav class="topbar-links">
+    <a class="nav-link type-button" href="index.html">Overview</a>
+    <a class="nav-link type-button" href="team.html">Team</a>
+    <a class="nav-link type-button" href="events.html">Events</a>
+    <a class="nav-link type-button" href="history.html">History</a>
+    <a class="nav-link type-button" href="sponsors.html">Sponsors</a>
+  </nav>
+  <div class="topbar-meta type-caption mono">
+    Season 2026–27<br>
+    BIOBUZZ
+  </div>
+</header>
+
+<main class="newsletter-page-main">
+  <div class="newsletter-card">
+    <h1 class="newsletter-title type-caption-heading">Sign Up for Our Newsletter!</h1>
+    <hr class="newsletter-hr">
+    <p class="newsletter-text">Enter your email to receive Team IRONIC's monthly newsletter!</p>
+    <form id="contact-form" method="POST" action="https://formspree.io/f/xbgjzrgd">
+      <input type="email" name="email" placeholder="Email" required>
+      <button type="submit" class="type-button newsletter-submit">Sign up!</button>
+    </form>
+  </div>
+</main>
+
+<!-- RGB light strip, cycles through site colors at the very bottom of the page -->
+<div class="rgb-strip"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

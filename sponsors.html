@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team IRONIC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<!--
+  SPONSORS PAGE
+
+  What's on this page, top to bottom:
+    1. Top bar (nav), same one every page uses
+    2. Page header, "Our Sponsors" title. No corner gears here,
+       same plain header as Team/History.
+    3. Sponsors content: a short CTA (blurb + "Get in touch" button)
+       above three logo tiers, biggest to smallest.
+
+  The "Get in touch" button links to sponsor-form.html, its own
+  standalone page (same pattern as newsletter.html), rather than
+  popping the form up on top of this page. That page holds the
+  customgform.com embed div/script — nothing customgform-related
+  lives here anymore.
+
+  Sponsor tiers below are Gold (2 large), Silver (3 medium), Bronze
+  (5 small) — every tile is a square, sized per tier in style.css
+  section 19. Tile counts are a guess, resize/add/remove freely.
+  Every tile is a dashed placeholder box (same look as the
+  placeholder photo spots on the History page) until a real sponsor
+  logo exists — swap the <span> inside a .sponsor-tile for an
+  <img src="..."> to drop a real logo in, no other markup changes
+  needed. The grid reflows and wraps on its own on smaller screens.
+
+  Full notes on this file's CSS are in style.css section 19.
+-->
+<body data-page="sponsors.html">
+
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-logo"><span>IRON</span>IC</div>
+    <div class="topbar-number mono">FTC #14226</div>
+  </div>
+  <nav class="topbar-links">
+    <a class="nav-link type-button" href="index.html">Overview</a>
+    <a class="nav-link type-button" href="team.html">Team</a>
+    <a class="nav-link type-button" href="events.html">Events</a>
+    <a class="nav-link type-button" href="history.html">History</a>
+    <a class="nav-link type-button" href="sponsors.html">Sponsors</a>
+  </nav>
+  <div class="topbar-meta type-caption mono">
+    Season 2026–27<br>
+    BIOBUZZ
+  </div>
+</header>
+
+  <main>
+
+<div class="page active" id="page-sponsors">
+  <div class="page-header" style="position: relative; text-align: center; overflow: visible;">
+    <h1 class="page-title type-headline" style="white-space: nowrap; position: relative; z-index: 3;">Our Sponsors</h1>
+  </div>
+
+  <div class="sponsors-content">
+
+    <!-- CTA: blurb + button, links out to sponsor-form.html -->
+    <div class="sponsor-cta">
+      <p class="lead type-body">Interested in becoming a sponsor and helping out a local robotics team?</p>
+      <a class="type-button sponsor-cta-btn" href="sponsor-form.html">Get in touch</a>
+    </div>
+
+    <!-- TIER 1: 2 large square tiles side by side -->
+    <div class="sponsor-tier">
+      <div class="events-section-title type-caption">Gold Sponsors</div>
+      <div class="sponsor-grid large">
+        <div class="sponsor-tile">
+          <span class="type-caption mono">Sponsor Logo</span>
+        </div>
+        <div class="sponsor-tile">
+          <span class="type-caption mono">Sponsor Logo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 2: 3 medium square tiles -->
+    <div class="sponsor-tier">
+      <div class="events-section-title type-caption">Silver Sponsors</div>
+      <div class="sponsor-grid medium">
+        <div class="sponsor-tile">
+          <span class="type-caption mono">Sponsor Logo</span>
+        </div>
+        <div class="sponsor-tile">
+          <span class="type-caption mono">Sponsor Logo</span>
+        </div>
+        <div class="sponsor-tile">
+          <span class="type-caption mono">Sponsor Logo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 3: 5 smaller square tiles -->
+    <div class="sponsor-tier">
+      <div class="events-section-title type-caption">Bronze Sponsors</div>
+      <div class="sponsor-grid small">
+        <div class="sponsor-tile">
+          <span class="type-caption mono">Sponsor Logo</span>
+        </div>
+        <div class="sponsor-tile">
+          <span class="type-caption mono">Sponsor Logo</span>
+        </div>
+        <div class="sponsor-tile">
+          <span class="type-caption mono">Sponsor Logo</span>
+        </div>
+        <div class="sponsor-tile">
+          <span class="type-caption mono">Sponsor Logo</span>
+        </div>
+        <div class="sponsor-tile">
+          <span class="type-caption mono">Sponsor Logo</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</main>
+
+<!-- RGB light strip, cycles through site colors at the very bottom of the page -->
+<div class="rgb-strip"></div>
+
+<script async src="https://cdn.customgform.com/cgf.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
