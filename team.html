@@ -16,27 +16,31 @@
     1. Top bar (nav), same one every page uses
     2. Page header, "Our Team" title. No corner gears or faint year
        watermark here — those only live on the Events page now.
-    3. Team content, one .team-grid per group: Leadership, Coders,
-       Builders, Build/Code, Media, Coaches (in that order, stacked
-       full width)
+    3. Team content: Leadership, then ONE combined Code/Build/Media
+       group, then Coaches.
 
-  Leadership now shows the two announced captains — Chase M. and
+  Leadership shows the two announced captains — Chase M. and
   Imani C. — instead of the old "To Be Revealed" placeholders.
 
-  The old single "Code" and "Build" groups have been split so every
-  group sits at the same level instead of Build/Code reading as the
-  "main" teams and Media as an add-on:
-    - Coders     — code-only members
-    - Builders   — build-only members
-    - Build/Code — members who do both; role line reads "Build, Code"
-                   (comma-separated) instead of just one tag
-    - Media      — unchanged group, same level as the other three
+  Code, Build, and Media are intentionally NOT split into separate
+  stacked sections anymore. They're one team, all on equal footing,
+  so their cards live together in a single .team-grid with the
+  members interleaved (a coder, then a builder, then a build/code
+  hybrid, then a media person, repeating) instead of clustered by
+  role. Each card still shows its own role on the card itself:
+    - "Code"        — code only
+    - "Build"        — build only
+    - "Build, Code"  — does both (comma-separated, on one line)
+    - "Media"        — media
 
   How to add or remove a member:
   Copy one <div class="team-card pink"> (or "blue") block inside the
   group's .team-grid, then swap the photo, name, role and grade.
   "pink" and "blue" just switch the accent color, doesn't mean
-  anything, use whichever looks better next to the last card.
+  anything, use whichever looks better next to the last card. When
+  adding someone to the combined Code/Build/Media group, drop their
+  card in wherever keeps the roles mixed rather than at the very end
+  — the point is no visual clustering by role.
 
   Each card's role color comes from the "pink"/"blue" class on
   .team-card itself, styled in style.css section 12, so there's only
@@ -105,16 +109,48 @@
       </div>
     </div>
 
-    <!-- CODERS -->
-    <div class="events-section-title type-caption">Coders</div>
+    <!-- CODE / BUILD / MEDIA — one combined, equal-level group.
+         Cards are interleaved on purpose (Code, Build, Build+Code,
+         Media, repeat) instead of grouped block-by-block. -->
+    <div class="events-section-title type-caption">Code / Build / Media</div>
     <div class="team-grid" style="margin-bottom: 44px;">
-      <div class="team-card blue">
+      <div class="team-card pink">
         <div class="team-card-img">
           <img src="portraitplaceholder.png" alt="">
         </div>
         <div class="team-card-body">
           <div class="team-card-name type-names">Josh V.</div>
           <div class="team-card-role">Code</div>
+          <div class="team-card-grade">Grade 12</div>
+        </div>
+      </div>
+      <div class="team-card blue">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Logan M.</div>
+          <div class="team-card-role">Build</div>
+          <div class="team-card-grade">Grade 10</div>
+        </div>
+      </div>
+      <div class="team-card pink">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Lucas B.</div>
+          <div class="team-card-role">Build, Code</div>
+          <div class="team-card-grade">Grade 12</div>
+        </div>
+      </div>
+      <div class="team-card blue">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Carly D.</div>
+          <div class="team-card-role">Media</div>
           <div class="team-card-grade">Grade 12</div>
         </div>
       </div>
@@ -128,21 +164,6 @@
           <div class="team-card-grade">Grade 10</div>
         </div>
       </div>
-    </div>
-
-    <!-- BUILDERS -->
-    <div class="events-section-title type-caption">Builders</div>
-    <div class="team-grid" style="margin-bottom: 44px;">
-      <div class="team-card pink">
-        <div class="team-card-img">
-          <img src="portraitplaceholder.png" alt="">
-        </div>
-        <div class="team-card-body">
-          <div class="team-card-name type-names">Logan M.</div>
-          <div class="team-card-role">Build</div>
-          <div class="team-card-grade">Grade 10</div>
-        </div>
-      </div>
       <div class="team-card blue">
         <div class="team-card-img">
           <img src="portraitplaceholder.png" alt="">
@@ -150,21 +171,6 @@
         <div class="team-card-body">
           <div class="team-card-name type-names">Adler Z.</div>
           <div class="team-card-role">Build</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BUILD/CODE -->
-    <div class="events-section-title type-caption">Build/Code</div>
-    <div class="team-grid" style="margin-bottom: 44px;">
-      <div class="team-card blue">
-        <div class="team-card-img">
-          <img src="portraitplaceholder.png" alt="">
-        </div>
-        <div class="team-card-body">
-          <div class="team-card-name type-names">Lucas B.</div>
-          <div class="team-card-role">Build, Code</div>
-          <div class="team-card-grade">Grade 12</div>
         </div>
       </div>
       <div class="team-card pink">
@@ -181,36 +187,21 @@
           <img src="portraitplaceholder.png" alt="">
         </div>
         <div class="team-card-body">
-          <div class="team-card-name type-names">Jay'don S.</div>
-          <div class="team-card-role">Build, Code</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MEDIA -->
-    <div class="events-section-title type-caption">Media</div>
-    <div class="team-grid" style="margin-bottom: 44px;">
-      <div class="team-card pink">
-        <div class="team-card-img">
-          <img src="portraitplaceholder.png" alt="">
-        </div>
-        <div class="team-card-body">
-          <div class="team-card-name type-names">Carly D.</div>
-          <div class="team-card-role">Media</div>
-          <div class="team-card-grade">Grade 12</div>
-        </div>
-      </div>
-      <div class="team-card blue">
-        <div class="team-card-img">
-          <img src="portraitplaceholder.png" alt="">
-        </div>
-        <div class="team-card-body">
           <div class="team-card-name type-names">Sophie M.</div>
           <div class="team-card-role">Media</div>
           <div class="team-card-grade">Grade 12</div>
         </div>
       </div>
       <div class="team-card pink">
+        <div class="team-card-img">
+          <img src="portraitplaceholder.png" alt="">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name type-names">Jay'don S.</div>
+          <div class="team-card-role">Build, Code</div>
+        </div>
+      </div>
+      <div class="team-card blue">
         <div class="team-card-img">
           <img src="portraitplaceholder.png" alt="">
         </div>
